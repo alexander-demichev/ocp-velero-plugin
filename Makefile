@@ -54,7 +54,10 @@ container: all
 	cp Dockerfile _output/Dockerfile
 	docker build -t $(IMAGE) -f _output/Dockerfile _output
 
-ci: all
+test:
+	go test ./velero-plugins/...
+
+ci: all test
 
 clean:
 	rm -rf .go _output

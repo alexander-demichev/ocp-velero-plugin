@@ -14,7 +14,6 @@ func main() {
 		RegisterBackupItemAction("common-backup-plugin", newCommonBackupPlugin).
 		RegisterRestoreItemAction("common-restore-plugin", newCommonRestorePlugin).
 		RegisterBackupItemAction("is-backup-plugin", newImageStreamBackupPlugin).
-		RegisterRestoreItemAction("is-restore-plugin", newImageStreamRestorePlugin).
 		RegisterRestoreItemAction("route-restore-plugin", newRouteRestorePlugin).
 		RegisterRestoreItemAction("build-restore-plugin", newBuildRestorePlugin).
 		Serve()
@@ -22,10 +21,6 @@ func main() {
 
 func newImageStreamBackupPlugin(logger logrus.FieldLogger) (interface{}, error) {
 	return &imagestream.BackupPlugin{Log: logger}, nil
-}
-
-func newImageStreamRestorePlugin(logger logrus.FieldLogger) (interface{}, error) {
-	return &imagestream.RestorePlugin{Log: logger}, nil
 }
 
 func newBuildRestorePlugin(logger logrus.FieldLogger) (interface{}, error) {
