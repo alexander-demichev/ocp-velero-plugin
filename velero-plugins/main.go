@@ -130,3 +130,14 @@ func newPVRestorePlugin(logger logrus.FieldLogger) (interface{}, error) {
 func newPVCRestorePlugin(logger logrus.FieldLogger) (interface{}, error) {
 	return &pvc.RestorePlugin{Log: logger}, nil
 }
+
+func newServiceAccountBackupPlugin(logger logrus.FieldLogger) (interface{}, error) {
+	saBackupPlugin := &serviceaccount.BackupPlugin{Log: logger}
+	
+	err := saBackupPlugin.InitSCCMap()
+	if err != nil {
+		return nil, err
+	}
+
+	return saBackupPlugin, nil
+}

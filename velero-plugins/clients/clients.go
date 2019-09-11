@@ -5,6 +5,7 @@ import (
 	buildv1 "github.com/openshift/client-go/build/clientset/versioned/typed/build/v1"
 	imagev1 "github.com/openshift/client-go/image/clientset/versioned/typed/image/v1"
 	routev1 "github.com/openshift/client-go/route/clientset/versioned/typed/route/v1"
+	security "github.com/openshift/client-go/security/clientset/versioned/typed/security/v1"
 	"k8s.io/client-go/discovery"
 	appsv1 "k8s.io/client-go/kubernetes/typed/apps/v1"
 	corev1 "k8s.io/client-go/kubernetes/typed/core/v1"
@@ -31,6 +32,9 @@ var routeClientError error
 
 var buildClient *buildv1.BuildV1Client
 var buildClientError error
+
+var securityClient *security.SecurityV1Client
+var securityClientError error
 
 // CoreClient returns a kubernetes CoreV1Client
 func CoreClient() (*corev1.CoreV1Client, error) {
@@ -172,6 +176,27 @@ func newOCPAppsClient() (*ocpappsv1.AppsV1Client, error) {
 	return client, nil
 }
 
+// SecurityClient returns an openshift AppsV1Client
+func SecurityClient() (*security.SecurityV1Client, error) {
+	if securityClient == nil && securityClientError == nil {
+		securityClient, securityClientError = newSecurityClient()
+	}
+	return securityClient, securityClientError
+}
+
+func newSecurityClient() (*security.SecurityV1Client, error) {
+	config, err := rest.InClusterConfig()
+	if err != nil {
+		return nil, err
+	}
+	client, err := security.NewForConfig(config)
+	if err != nil {
+		return nil, err
+	}
+
+	return client, nil
+}
+
 func init() {
 	coreClient, coreClientError = nil, nil
 	imageClient, imageClientError = nil, nil
@@ -180,4 +205,5 @@ func init() {
 	buildClient, buildClientError = nil, nil
 	ocpAppsClient, ocpAppsClientError = nil, nil
 	appsClient, appsClientError = nil, nil
+	securityClient, securityClientError = nil, nil
 }

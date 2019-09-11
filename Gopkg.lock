@@ -562,7 +562,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:3500b1bc488cc4e084affff2fb790194310fac59bff4625adb2a0e937b1b27c9"
+  digest = "1:3efc6f316af409263018ae68a7a0ac67d7ea8a6f23e4e2eb9ba4ee972c0d4449"
   name = "github.com/openshift/api"
   packages = [
     "apps/v1",
@@ -571,13 +571,14 @@
     "image/dockerpre012",
     "image/v1",
     "route/v1",
+    "security/v1",
   ]
   pruneopts = "NUT"
   revision = "600a5519d1ec56e02c20f42b43888db560bdcb7e"
 
 [[projects]]
   branch = "master"
-  digest = "1:c3ba627e43875709bcc79a2584d603d6a25b6d2bc82fcd174b63f0cde5e17dd3"
+  digest = "1:cf59aaeb32e94868197211090c8d683e02a90085dc2e40369005f668529f4f35"
   name = "github.com/openshift/client-go"
   packages = [
     "apps/clientset/versioned/scheme",
@@ -588,6 +589,8 @@
     "image/clientset/versioned/typed/image/v1",
     "route/clientset/versioned/scheme",
     "route/clientset/versioned/typed/route/v1",
+    "security/clientset/versioned/scheme",
+    "security/clientset/versioned/typed/security/v1",
   ]
   pruneopts = "NUT"
   revision = "2d89985ca24a8307e4b5db2574a62d3e6c2444b4"
@@ -1098,10 +1101,12 @@
     "github.com/openshift/api/build/v1",
     "github.com/openshift/api/image/v1",
     "github.com/openshift/api/route/v1",
+    "github.com/openshift/api/security/v1",
     "github.com/openshift/client-go/apps/clientset/versioned/typed/apps/v1",
     "github.com/openshift/client-go/build/clientset/versioned/typed/build/v1",
     "github.com/openshift/client-go/image/clientset/versioned/typed/image/v1",
     "github.com/openshift/client-go/route/clientset/versioned/typed/route/v1",
+    "github.com/openshift/client-go/security/clientset/versioned/typed/security/v1",
     "github.com/openshift/library-go/pkg/image/reference",
     "github.com/sirupsen/logrus",
     "github.com/stretchr/testify/assert",
